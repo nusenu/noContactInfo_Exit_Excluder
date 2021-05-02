@@ -1,4 +1,4 @@
-# noContactInfo Exit Relay Excluder
+# noContactInfo Tor Exit Relay Excluder
 
 Tor does not have an option to say "do not use exit relays without ContactInfo".
 Setting a ContactInfo is on the list of "[Expectations for Relay Operators](https://gitlab.torproject.org/tpo/community/team/-/wikis/Expectations-for-Relay-Operators)".
