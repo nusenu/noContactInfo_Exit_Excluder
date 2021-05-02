@@ -4,10 +4,6 @@ from stem.util.tor_tools import *
 
 torsocketpath='/home/-replace-me-/.tor-control.socket'
 
-## add the following lines to your tor configuration file shipped with Tor Browser: Browser/TorBrowser/Data/Tor/torrc
-# ControlSocket /home/-replace-me-/.tor-control.socket
-# UseMicrodescriptors 0
-
 try:
     controller = Controller.from_socket_file(path=torsocketpath)
     controller.authenticate()
