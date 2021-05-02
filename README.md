@@ -16,7 +16,7 @@ If the current tor daemon configuration already has an exit relay exclusion list
 
 The script also excludes relays that allow exiting but do not have the exit flag if they do not have a ContactInfo set.
 
-Tor must be running the script is invoked.
+Tor must be running when the script is invoked.
 
 ## Example Output
 
@@ -36,7 +36,7 @@ This tor configuration change is not permanently stored (non-persistent). A Tor 
 
 The script depends on two torrc options, that must be present in Browser/TorBrowser/Data/Tor/torrc before Tor Browser is started.
 
-Choose a suitable path for the ControlSocket file in your home folder, replace the "-replace-me-" string here and in the script.
+Choose a suitable path for the ControlSocket file (that only your user can access) in your home folder, replace the "-replace-me-" string here and in the script.
 When tor starts it will create the file.
 
 ```
