@@ -1,4 +1,7 @@
-# exclude tor exit relays without ContactInfo
+# noContactInfo Exit Relay Excluder
+
+Tor does not have an option to say "do not use exit relays without ContactInfo".
+Setting a ContactInfo is on the list of "[Expectations for Relay Operators](https://gitlab.torproject.org/tpo/community/team/-/wikis/Expectations-for-Relay-Operators)".
 
 This proof-of-concept script connects to a tor client daemon via the tor control socket and tells it to avoid 
 [exit relays that have no ContactInfo](https://nusenu.github.io/OrNetStats/no-contactinfo-exits) set. It uses 
@@ -7,9 +10,13 @@ option, that means the excluded exits will only be avoided in the exit position 
 
 The configuration change is non-persistent, meaning that restarting the tor daemon will revert the change.
 
-For every excluded exit relay the URL for the Relay Search page is printed to standard output.
+For every excluded exit relay the URL for the [Relay Search](https://metrics.torproject.org/rs.html#search) page is printed to standard output.
 
 If the current tor daemon configuration already has an exit relay exclusion list it aborts and does not change the configuration.
+
+The script also excludes relays that allow exiting but do not have the exit flag if they do not have a ContactInfo set.
+
+Tor must be running the script is invoked.
 
 ## Example Output
 
@@ -27,7 +34,10 @@ This tor configuration change is not permanently stored (non-persistent). A Tor 
 
 ## torrc Dependencies
 
-exclude_noContactInfo_Exits depends on two torrc options, that must be present in Browser/TorBrowser/Data/Tor/torrc before Tor Browser is started:
+The script depends on two torrc options, that must be present in Browser/TorBrowser/Data/Tor/torrc before Tor Browser is started.
+
+Choose a suitable path for the ControlSocket file in your home folder, replace the "-replace-me-" string here and in the script.
+When tor starts it will create the file.
 
 ```
 ControlSocket /home/-replace-me-/.tor-control.socket
