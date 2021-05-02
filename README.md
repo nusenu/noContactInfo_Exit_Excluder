@@ -1,6 +1,9 @@
+# exclude tor exit relays without ContactInfo
 
-
-This proof-of-concept script connects to a tor client daemon via the tor control socket and tells it to avoid [exit relays that have no ContactInfo](https://nusenu.github.io/OrNetStats/no-contactinfo-exits) set.
+This proof-of-concept script connects to a tor client daemon via the tor control socket and tells it to avoid 
+[exit relays that have no ContactInfo](https://nusenu.github.io/OrNetStats/no-contactinfo-exits) set. It uses 
+the [ExcludeExitNodes](https://2019.www.torproject.org/docs/tor-manual.html.en#ExcludeExitNodes) torrc configution
+option, that means the excluded exits will only be avoided in the exit position but continue to be used for other positions (first and second hop).
 
 The configuration change is non-persistent, meaning that restarting the tor daemon will revert the change.
 
